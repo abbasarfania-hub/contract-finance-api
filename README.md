@@ -1,78 +1,112 @@
-# Contract Finance API
+# Contract Finance API (PL/SQL)
 
-This repository contains a **PL/SQL package** for calculating and managing various contract finance metrics such as:
+## Overview
+This project is a **portfolio-grade PL/SQL package** that demonstrates how to design and implement a **contract finance calculation engine** in Oracle Database.
 
-* Total payments (`total_amount`)
-* Penalties (`penalty`)
-* Income (`income`)
-* Execution status (`execution`)
-* Adjustments for historical data
+The package exposes a clean API for calculating various financial metrics related to contracts, such as total amounts, principal, interest, penalties, insurance, and execution-related figures.
 
-This project can be used as a **demo for Oracle PL/SQL development** or as a **portfolio example**.
+This repository is intended to showcase **Senior-level Oracle / Data Engineering skills**, including package design, refactoring, abstraction, and testability.
 
-## Features
+---
 
-* Modular functions to calculate contract-related amounts
-* Handles historical data adjustments and corrections
-* Supports sample data for testing
-* Easy to integrate into existing Oracle databases
+## Why This Project Exists
+In many enterprise systems (especially banking, insurance, and financial platforms), complex financial logic accumulates over time and becomes:
 
-## Getting Started
+- Hard to maintain
+- Difficult to test
+- Tightly coupled to database tables
+- Risky to refactor
 
-### 1. Clone the repository
+This project demonstrates how such logic can be:
+- Consolidated
+- Simplified
+- Exposed through a clear API
+- Made testable with sample data
 
-```bash
-git clone https://github.com/abbasarfania-hub/contract-finance-api.git
-cd contract-finance-api
-```
+---
 
-### 2. Load sample data into your Oracle database
+## What This Package Does
+The package provides functions and procedures to:
 
+- Build a **contract context** from multiple data sources
+- Calculate:
+  - Total contract amount
+  - Principal
+  - Interest
+  - Penalties
+  - Insurance-related values
+  - Execution and settlement adjustments
+- Log processing steps for traceability
+- Support batch-style execution patterns
+
+All calculations are performed using **pure PL/SQL logic** with a focus on readability and maintainability.
+
+---
+
+## Technical Highlights (Senior-Level)
+- Clean **Package Spec / Body separation**
+- API-oriented design (callable from SQL, jobs, or ETL tools)
+- Reduced function sprawl by consolidating logic
+- Defensive coding (NULL handling, controlled exceptions)
+- Sample data for reproducible testing
+- Enterprise-friendly naming and structure
+
+---
+
+## Project Structure
+
+.
+├── contract_finance_api_spec.sql -- Package specification
+├── contract_finance_api_body.sql -- Package body (implementation)
+├── sample_data.sql -- Sample tables and demo data
+├── test_queries.sql -- Example queries to test the package
+├── run_all.sql -- Optional script to run everything
+└── README.md -- Project documentation
+
+
+---
+
+## How to Run (Local Test)
+
+### 1. Load sample data
+Run in SQL*Plus, SQLcl, or SQL Developer:
 ```sql
 @sample_data.sql
 ```
-
-### 3. Compile the package
-
+2. Compile the package
 ```sql
 @contract_finance_api_spec.sql
 @contract_finance_api_body.sql
 ```
-
-### 4. Test the package functions
-
+3. Test the package
 ```sql
--- Example usage:
-SELECT contract_finance_api.get_contract_context('001', 'A1', 'ACC123', 1) FROM dual;
-SELECT contract_finance_api.calculate_total('002', 'A2', 'ACC456', 2) FROM dual;
+@test_queries.sql
 ```
-
-### 5. Optional: Run all commands at once
-
+Or run individual examples:
 ```sql
-@run_all.sql
+SELECT contract_finance_api.get_contract_context('001','A1','ACC123',1) FROM dual;
+SELECT contract_finance_api.calculate_total('002','A2','ACC456',2) FROM dual;
 ```
+## Disclaimer
 
-## Folder Structure
+⚠️ Important Notice
 
-```
-.
-├── contract_finance_api_spec.sql   -- Package specification
-├── contract_finance_api_body.sql   -- Package body
-├── sample_data.sql                 -- Sample data for testing
-├── test_queries.sql                -- Queries to test package functionality
-├── run_all.sql                     -- Optional script to run all commands
-└── README.md                       -- Project documentation
-```
+    This project is for demonstration and portfolio purposes only
 
-## Notes
+    All table names, column names, and business rules have been anonymized and modified
 
-* This package is intended for **educational/demo purposes**.
-* Do **not use in production** without proper security and compliance review.
-* All sample data and queries are provided to illustrate usage.
+    Sample data is fully synthetic
+
+    This repository does NOT represent any real banking or financial system
+
+    No confidential, proprietary, or production logic is disclosed
 
 ## Author
 
 Abbas Arfania
-GitHub: [abbasarfania-hub](https://github.com/abbasarfania-hub)
+Senior Data Engineer / Oracle Developer
+
+GitHub: https://github.com/abbasarfania-hub
+
+LinkedIn: https://www.linkedin.com/in/abbas-arfania-84ba97b6
 
