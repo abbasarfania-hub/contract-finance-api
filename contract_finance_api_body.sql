@@ -20,11 +20,11 @@ CREATE OR REPLACE PACKAGE BODY contract_finance_api IS
     l_ctx t_contract_ctx;
 
   BEGIN
-    /*
-      NOTE:
-      این SELECT عمداً generic نوشته شده.
-      در گیت‌هاب می‌توانی table را mock_contracts بسازی
-    */
+/*
+NOTE:
+This SELECT is intentionally generic.
+You can create the mock_contracts table on GitHub
+*/
 
     SELECT
       branch_code,
